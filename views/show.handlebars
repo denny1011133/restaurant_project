@@ -41,6 +41,10 @@
           <a href="/restaurants/{{restaurant._id}}/edit" class="text-secondary">
             <button>編輯</button>
           </a>
+          <form action="/restaurants/{{restaurant._id }}/delete" method="POST">
+            <button type="submit"><i class="far fa-trash-alt"></i>
+            </button>
+          </form>
         </div>
       </div>
     </div>
