@@ -39,11 +39,10 @@
       <div class="container">
         <div class="center">
           <a href="/restaurants/{{restaurant._id}}/edit" class="text-secondary">
-            <button>編輯</button>
+            <button type="button" class="btn btn-primary">編輯</button>
           </a>
           <form action="/restaurants/{{restaurant._id }}?_method=DELETE" method="POST">
-            <button type="submit"><i class="far fa-trash-alt"></i>
-            </button>
+            <button type="submit" class="btn btn-primary">刪除</button>
           </form>
         </div>
       </div>
