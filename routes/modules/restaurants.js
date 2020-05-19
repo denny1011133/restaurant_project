@@ -33,18 +33,10 @@ router.get('/:restaurant_id/edit', (req, res) => {
 //編輯單筆餐廳資訊
 router.put('/:restaurant_id', (req, res) => {
   const id = req.params.restaurant_id
-  const { name, name_en, category, image, location, phone, google_map, rating, description } = req.body
+  // const { name, name_en, category, image, location, phone, google_map, rating, description } = req.body
   return Restaurant.findById(id)
     .then(restaurant => {
-      restaurant.name = name
-      restaurant.name_en = name_en
-      restaurant.category = category
-      restaurant.image = image
-      restaurant.location = location
-      restaurant.phone = phone
-      restaurant.google_map = google_map
-      restaurant.rating = rating
-      restaurant.description = description
+      restaurant = Object.assign(restaurant, req.body)
       return restaurant.save()
     })
     .then(() => res.redirect(`/restaurants/${id}`))
