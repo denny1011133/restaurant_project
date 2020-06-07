@@ -32,22 +32,24 @@ db.once('open', () => {
         Promise.all(Array.from(
           { length: 3 },
           (_, i) => {
-            for (let i = 0; i < 3; i++) {
-              Restaurant.create({
-                "name": restaurantList.results[i].name,
-                "name_en": restaurantList.results[i].name_en,
-                "category": restaurantList.results[i].category,
-                "image": restaurantList.results[i].image,
-                "location": restaurantList.results[i].location,
-                "phone": restaurantList.results[i].phone,
-                "google_map": restaurantList.results[i].google_map,
-                "rating": restaurantList.results[i].rating,
-                "description": restaurantList.results[i].description,
-                "_id": userId,
-              })
-            }
+            Restaurant.create({
+              "name": restaurantList.results[i].name,
+              "name_en": restaurantList.results[i].name_en,
+              "category": restaurantList.results[i].category,
+              "image": restaurantList.results[i].image,
+              "location": restaurantList.results[i].location,
+              "phone": restaurantList.results[i].phone,
+              "google_map": restaurantList.results[i].google_map,
+              "rating": restaurantList.results[i].rating,
+              "description": restaurantList.results[i].description,
+              "userId": userId,
+            })
           }
         ))
+      })
+      .then(() => {
+        console.log('done.')
+        process.exit()
       })
   })
   console.log('mongodb connected!')
