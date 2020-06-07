@@ -4,8 +4,9 @@ const Restaurant = require('../../models/restaurant')
 
 router.get('/', (req, res) => {
   const keyword = req.query.keyword
-  Restaurant.find({ $or: [{ name: new RegExp(keyword, 'i') }, { category: new RegExp(keyword, 'i') }] })
+  Restaurant.find()
     .lean()
+    .then(restaurants => restaurants.filter(res => res.name.includes(keyword) || res.category.includes(keyword)))
     .then(restaurants => res.render('index', { restaurants, keyword }))
     .catch(error => console.log(error))
 })
