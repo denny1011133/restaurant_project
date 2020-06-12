@@ -58,7 +58,7 @@ db.once('open', () => {
     })
     .then((user) => {
       const userId = user._id
-      Promise.all(Array.from(
+      return Promise.all(Array.from(
         { length: 3 },
         (_, i) => Restaurant.create({
           name: restaurantList.results[i].name,
@@ -74,6 +74,6 @@ db.once('open', () => {
         })
       ))
     })
-
+    .then(() => process.exit())
   console.log('mongodb connected!')
 })
